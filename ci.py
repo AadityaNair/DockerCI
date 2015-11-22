@@ -19,7 +19,8 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument('status',
         type=str,
-        help="takes either 'last' or 'all'. Prints either status of last job or all jobs. "
+        help="takes either 'last' or 'all'. Prints either status of last job or all jobs. ",
+        choices=['last', 'all']
         )
 
 args = parser.parse_args()
@@ -27,9 +28,8 @@ status = args.status.lower()
 
 if status == 'last':
     show_last_status()
-elif status == 'all':
+
+if status == 'all':
     show_all_status()
-else:
-    print "Wrong argument. Try again.\n"
 
 
