@@ -20,7 +20,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('status',
         type=str,
         help="takes either 'last' or 'all'. Prints either status of last job or all jobs. ",
-        choices=['last', 'all']
+        choices=['last', 'all', 'init']
         )
 
 args = parser.parse_args()
@@ -32,4 +32,6 @@ if status == 'last':
 if status == 'all':
     show_all_status()
 
-
+if status == 'init':
+    import os
+    os.system("git init --template=/home/Aaditya/projects/DockerCI/git-templates")
