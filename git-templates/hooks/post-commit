@@ -16,5 +16,5 @@ payload = {
         'id':sha1,
         'msg':commit_msg,
         }
-
+print "Commit Detected.\nBuild request sent.\n"
 requests.post(URL, json=payload)
