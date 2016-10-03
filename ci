@@ -1,0 +1,26 @@
+#!/usr/bin/sh
+
+#  DockerCI
+#       - By Aaditya M Nair
+#  This is the user facing part.
+#  This file creates the git repo and shows status of build jobs
+
+#TODO Add option to create a new folder with init.
+#TODO check if already a CI repo
+#TODO Init *may* affect existing repos by modifying existing hooks. 
+
+#TODO Add options to streamline status output
+
+if [ $# -eq 0 ]; then ## Without any arguments, initialises the folder as repo
+
+    git init --template=/home/Aaditya/projects/DockerCI/git-templates
+    echo "Initialised repo with the CI system" 
+
+else    ## Only argument is to show status
+    # Find a way to communicate with the other process
+    #while getopts ":s:" opt; do
+        #echo 1
+    #done
+
+fi
+echo "Done"
