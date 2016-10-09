@@ -1,20 +1,13 @@
-#!/usr/bin/env python
+#!/bin/sh
 
-import subprocess, os, requests
-URL="http://localhost:8000/ci/build"
+url='http://localhost:5000/ci/build'
 
-commit_msg = subprocess.check_output(['git', 'log', '--format=%B', '-n' ,'1', 'HEAD'])
+commit_msg=`git log -n1 --format=%B HEAD`
+sha1=`git rev-parse HEAD`
+dir=`pwd`
 
-if '[NO CI]' in commit_msg:
-    exit(0)
+if [[ $commit_msg == *"[NO CI]"* ]];then
+    exit 0
+fi
 
-sha1 = subprocess.check_output(['git','rev-parse', 'HEAD'])
-git_dir = os.getcwd()
-
-payload = {
-        'git_dir':git_dir,
-        'id':sha1,
-        'msg':commit_msg,
-        }
-print "Commit Detected.\nBuild request sent.\n"
-requests.post(URL, json=payload)
+curl --data "id=$sha1&git_dir=$dir&msg=$commit_msg" $url
