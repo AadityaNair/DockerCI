@@ -10,4 +10,5 @@ if [[ $commit_msg == *"[NO CI]"* ]];then
     exit 0
 fi
 
-curl --data "id=$sha1&git_dir=$dir&msg=$commit_msg" $url
+python3.4 $HOME/projects/DockerCI/start_build.py $commit_msg $sha1 $pwd &
+disown
